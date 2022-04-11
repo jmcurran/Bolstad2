@@ -29,7 +29,7 @@ may not be specified by CDF
 \examples{
 
 ## The posterior density is N(3,1)
-theta <- rnorm(1000,3)
+theta = rnorm(1000,3)
 
 ## test whether the true mean is greater than 0 (it is obviously!)
 pnullSamp(theta)

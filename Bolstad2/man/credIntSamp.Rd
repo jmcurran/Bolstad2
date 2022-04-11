@@ -30,8 +30,8 @@ may not be specified by CDF
 \examples{
 
 ## posterior is N(0,1)
-theta <- rnorm(1000)
-ci<-credIntSamp(theta)
+theta = rnorm(1000)
+ci=credIntSamp(theta)
 plot(density(theta))
 abline(v=c(unlist(ci)))
 

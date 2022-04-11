@@ -31,7 +31,8 @@
 #' BayesLogistic(logisticTest.df$y, logisticTest.df$x)
 #' 
 #' @export BayesLogistic
-BayesLogistic = function(y, x, steps = 1000, priorMean = NULL, priorVar = NULL, mleMean = NULL, mleVar, startValue = NULL, randomSeed = NULL, plots = FALSE) {
+BayesLogistic = function(y, x, steps = 1000, priorMean = NULL, priorVar = NULL, mleMean = NULL, mleVar,
+    startValue = NULL, randomSeed = NULL, plots = FALSE) {
 
     if (!is.null(randomSeed))
         set.seed(randomSeed)
@@ -64,7 +65,8 @@ BayesLogistic = function(y, x, steps = 1000, priorMean = NULL, priorVar = NULL, 
         Vdiag = Pi * (1 - Pi)
         Y = betaX + (y - Pi)/Vdiag
 
-        ## I have no idea why the diag command doesn't work as it should: e.g.  Vyinv = diag(Vdiag, nrow = length(Vdiag)) therefore this two-step procedure is needed
+        ## I have no idea why the diag command doesn't work as it should: e.g.  Vyinv =
+        ## diag(Vdiag, nrow = length(Vdiag)) therefore this two-step procedure is needed
         Vyinv = matrix(0, nrow = nObs, ncol = nObs)
         diag(Vyinv) = Vdiag
 
@@ -100,7 +102,8 @@ BayesLogistic = function(y, x, steps = 1000, priorMean = NULL, priorVar = NULL, 
 
 
 
-        ## if the prior mean and variance isn't specified then set it equal to the mle mean and variance
+        ## if the prior mean and variance isn't specified then set it equal to the mle mean and
+        ## variance
         if (is.null(priorMean)) {
             priorMean = result$postMean = mleMean
         }
@@ -114,7 +117,8 @@ BayesLogistic = function(y, x, steps = 1000, priorMean = NULL, priorVar = NULL, 
         postPrec = mleVarInv + priorVarInv
         result$postVar = solve(postPrec)
 
-        result$postMean = result$postVar %*% priorVarInv %*% priorMean + result$postVar %*% mleVarInv %*% mleMean
+        result$postMean = result$postVar %*% priorVarInv %*% priorMean + result$postVar %*% mleVarInv %*%
+            mleMean
 
         return(result)
     }

@@ -21,51 +21,51 @@
 #' ## commands for calculating a numerical posterior CDF.
 #' ## In this example, the likelihood is proportional to
 #' ## \eqn{\theta^{3/2}\times \exp(-\theta/4)} and a N(6, 9) prior is used.
-#' theta <- seq(from = 0.001, to = 40, by = 0.001)
-#' prior <- dnorm(theta,6,3)
-#' ppnLike <- theta^1.5*exp(-theta/4)
-#' ppnPost <- prior*ppnLike
-#' scaleFactor <- sintegral(theta, ppnPost)$int
-#' posterior <- ppnPost/scaleFactor
-#' cdf <- sintegral(theta, posterior)$y
+#' theta = seq(from = 0.001, to = 40, by = 0.001)
+#' prior = dnorm(theta,6,3)
+#' ppnLike = theta^1.5*exp(-theta/4)
+#' ppnPost = prior*ppnLike
+#' scaleFactor = sintegral(theta, ppnPost)$int
+#' posterior = ppnPost/scaleFactor
+#' cdf = sintegral(theta, posterior)$y
 #' pNull(15, theta, cdf)
 #' 
 #' ## Use an inverse method to take a random sample of size 1000
 #' ## from the posterior
-#' suppressWarnings(Finv <- approxfun(cdf, theta))
-#' thetaSample<-Finv(runif(1000))
+#' suppressWarnings({Finv = approxfun(cdf, theta)})
+#' thetaSample = Finv(runif(1000))
 #' pNull(15, thetaSample)
 #' 
 #' @export pNull
-pNull <- function(theta0, theta, cdf = NULL, type = "upper") {
+pNull = function(theta0, theta, cdf = NULL, type = "upper") {
 
     if (length(theta) < 10)
         stop("theta must have at least ten values")
 
     if (length(grep("^[lL]", type)) > 0) {
-        type <- "lower"
+        type = "lower"
     } else if (length(grep("^[Uu]", type)) > 0) {
-        type <- "upper"
+        type = "upper"
     } else {
         stop("type must be one of lower or upper")
     }
 
-    Fx <- ecdf(theta)
+    Fx = ecdf(theta)
 
     if (!is.null(cdf)) {
-        o <- order(theta)
+        o = order(theta)
         if (any(theta[o] != theta)) {
             warning("theta is not in ascending order. This may cause problems")
         }
-        suppressWarnings(Fx <- approxfun(theta, cdf))
+        suppressWarnings({Fx = approxfun(x = theta, y = cdf)})
     }
 
     if (type == "lower") {
-        prob <- Fx(theta0)
+        prob = Fx(theta0)
         cat(paste("Posterior Pr(theta<=theta0) is ", prob, "\n", sep = ""))
         invisible(list(prob = prob))
     } else {
-        prob <- 1 - Fx(theta0)
+        prob = 1 - Fx(theta0)
         cat(paste("Posterior Pr(theta>=theta0) is ", prob, "\n", sep = ""))
         invisible(list(prob = prob))
     }

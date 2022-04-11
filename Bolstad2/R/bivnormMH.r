@@ -22,19 +22,19 @@
 #' @examples
 #' 
 #' ## independent chain
-#' chain1.df<-bivnormMH(0.9)$targetSample
+#' chain1.df=bivnormMH(0.9)$targetSample
 #' 
 #' ## random walk chain
-#' chain2.df<-bivnormMH(0.9, type = 'r')$targetSample
+#' chain2.df=bivnormMH(0.9, type = 'r')$targetSample
 #' 
 #' 
 #' ## blockwise MH chain
-#' chain3.df<-bivnormMH(0.9, type = 'b')$targetSample
+#' chain3.df=bivnormMH(0.9, type = 'b')$targetSample
 #' 
 #' ## Gibbs sampling chain
-#' chain4.df<-bivnormMH(0.9, type = 'g')$targetSample
+#' chain4.df=bivnormMH(0.9, type = 'g')$targetSample
 #' 
-#' oldPar <- par(mfrow=c(2,2))
+#' oldPar = par(mfrow=c(2,2))
 #' plot(y ~ x, type = 'l', chain1.df, main = 'Independent')
 #' plot(y ~ x, type = 'l', chain2.df, main = 'Random Walk')
 #' plot(y ~ x, type = 'l', chain3.df, main = 'Blockwise')
@@ -42,7 +42,7 @@
 #' par(oldPar)
 #' 
 #' @export bivnormMH
-bivnormMH <- function(rho, rho1 = 0.9, sigma = c(1.2, 1.2), steps = 1000, type = "ind") {
+bivnormMH = function(rho, rho1 = 0.9, sigma = c(1.2, 1.2), steps = 1000, type = "ind") {
 
     if (rho < -1 | rho > 1) {
         stop("rho must be between -1 and 1")

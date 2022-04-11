@@ -26,10 +26,10 @@ Takes a vector of \eqn{x} values and a corresponding set of postive
 \examples{
 
 ## integrate the normal density from -3 to 3
-x<-seq(-3,3,length=100)
-fx<-dnorm(x)
-estimate<-sintegral(x,fx)$int
-true.val<-diff(pnorm(c(-3,3)))
+x=seq(-3,3,length=100)
+fx=dnorm(x)
+estimate=sintegral(x,fx)$int
+true.val=diff(pnorm(c(-3,3)))
 cat(paste('Absolute error :',round(abs(estimate-true.val),7),'\n'))
 cat(paste('Relative percentage error :', 100*round((abs(estimate-true.val)/true.val),6),'\%\n'))
 

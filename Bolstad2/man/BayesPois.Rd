@@ -58,6 +58,6 @@ distribution with 4 degrees of freedom to give heavy tails.
 \examples{
 
 data(poissonTest.df)
-results <- BayesPois(poissonTest.df$y, poissonTest.df$x)
+results = BayesPois(poissonTest.df$y, poissonTest.df$x)
 
 }

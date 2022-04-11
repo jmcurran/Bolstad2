@@ -28,7 +28,7 @@ Note this function does not check to see if k is sensible.
 ## 5th element
 ##
 
-MCMCSampleBW <- bivnormMH(0.9, type = 'block')
-MCMCSampleBW <- thin(MCMCSampleBW, 5)
+MCMCSampleBW = bivnormMH(0.9, type = 'block')
+MCMCSampleBW = thin(MCMCSampleBW, 5)
 
 }

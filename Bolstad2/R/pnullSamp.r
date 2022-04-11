@@ -15,33 +15,33 @@
 #' @examples
 #' 
 #' ## The posterior density is N(3,1)
-#' theta <- rnorm(1000,3)
+#' theta = rnorm(1000,3)
 #' 
 #' ## test whether the true mean is greater than 0 (it is obviously!)
 #' pnullSamp(theta)
 #' 
 #' @export pnullSamp
-pnullSamp <- function(theta, theta0 = 0, type = "upper") {
+pnullSamp = function(theta, theta0 = 0, type = "upper") {
 
     if (length(theta) < 10)
         stop("theta must have at least ten values")
 
     if (length(grep("^[lL]", type)) > 0) {
-        type <- "lower"
+        type = "lower"
     } else if (length(grep("^[Uu]", type)) > 0) {
-        type <- "upper"
+        type = "upper"
     } else {
         stop("type must be one of lower or upper")
     }
 
-    Fx <- ecdf(theta)
+    Fx = ecdf(theta)
 
     if (type == "lower") {
-        prob <- 1 - Fx(theta0)
+        prob = 1 - Fx(theta0)
         cat(paste("Posterior Pr(theta<=theta0) is ", prob, "\n", sep = ""))
         invisible(list(prob = prob))
     } else {
-        prob <- Fx(theta0)
+        prob = Fx(theta0)
         cat(paste("Posterior Pr(theta>=theta0) is ", prob, "\n", sep = ""))
         invisible(list(prob = prob))
     }
