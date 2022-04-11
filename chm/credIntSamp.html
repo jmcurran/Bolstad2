@@ -1,0 +1,77 @@
+<html><head><title>Calculate a credible interval from a numerically specified
+posterior CDF</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>credIntSamp(bolstad2)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   credIntSamp">
+<param name="keyword" value=" Calculate a credible interval from a numerically specified
+posterior CDF">
+</object>
+
+
+<h2>Calculate a credible interval from a numerically specified
+posterior CDF</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Calculates a lower, upper, or two-sided credible interval
+from the numerical posterior CDF.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>credIntSamp(theta, conf = 0.95, type="twosided")
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>theta</code></td>
+<td>
+a sample from the posterior density</td></tr>
+<tr valign="top"><td><code>conf</code></td>
+<td>
+the desired 'confidence' level</td></tr>
+<tr valign="top"><td><code>type</code></td>
+<td>
+the type of interval to return, 'lower' = one sided lower
+bound, 'two-sided' = two - sided, or 'upper' = one sided upper
+bound. It is sufficient to use 'l','t' or 'u'</td></tr>
+</table>
+
+<h3>Details</h3>
+
+<p>
+This function uses linear interpolation to calculate bounds for points
+that may not be specified by CDF
+</p>
+
+
+<h3>Value</h3>
+
+<p>
+a list containing the elements lower.bound, uppper.bound or both
+depending on type</p>
+
+<h3>Examples</h3>
+
+<pre>
+## posterior is N(0,1)
+theta &lt;- rnorm(1000)
+ci&lt;-credIntSamp(theta)
+plot(density(theta))
+abline(v=c(unlist(ci)))
+</pre>
+
+
+
+<hr><div align="center">[Package <em>bolstad2</em> version 1.0-0 <a href="00Index.html">Index]</a></div>
+
+</body></html>

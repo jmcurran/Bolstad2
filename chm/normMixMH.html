@@ -1,0 +1,100 @@
+<html><head><title>Sample from a normal mixture model using Metropolis-Hastings</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>normMixMH(bolstad2)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   normMixMH">
+<param name="keyword" value=" Sample from a normal mixture model using Metropolis-Hastings">
+</object>
+
+
+<h2>Sample from a normal mixture model using Metropolis-Hastings</h2>
+
+
+<h3>Description</h3>
+
+<p>
+normMixMH uses the Metropolis-Hastings algorithm to draw a
+sample from a univariate target distribution that is a mixture of two
+normal distributions using an independent normal candidate density or a random
+walk normal candidate density.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+  normMixMH(theta0, theta1, p,  candidate,
+            steps = 1000, type = 'ind',
+            randomSeed = NULL, startValue = NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>theta0</code></td>
+<td>
+A vector of length two containing the mean and standard
+deviation of the first component of the normal mixture</td></tr>
+<tr valign="top"><td><code>theta1</code></td>
+<td>
+A vector of length two containing the mean and standard
+deviation of the second component of the normal mixture</td></tr>
+<tr valign="top"><td><code>p</code></td>
+<td>
+A value between 0 and 1 representing the mixture proportion,
+so that the true density is <i>ptimes f(&mu;1,&sigma;1) +
+(1-p)times f(&mu;_2,&sigma;_2)</i></td></tr>
+<tr valign="top"><td><code>candidate</code></td>
+<td>
+A vector of length two containing the mean and
+standard deviation of the candidate density</td></tr>
+<tr valign="top"><td><code>steps</code></td>
+<td>
+The number of steps to be used in the Metropolis-Hastings
+algorithm. steps must be greater than 100</td></tr>
+<tr valign="top"><td><code>type</code></td>
+<td>
+Either 'ind' or 'rw' depending on whether a independent
+candidate density or random walk candidate density is to be
+used. 'i' and 'r' may be used as alternative compact notation</td></tr>
+<tr valign="top"><td><code>startValue</code></td>
+<td>
+A starting value for the chain</td></tr>
+<tr valign="top"><td><code>randomSeed</code></td>
+<td>
+A seed for the random number generator. Only used
+when you want the same sequence of random numbers in the chain</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+A vector containing a sample from the normal mixture distribution.</p>
+
+<h3>Examples</h3>
+
+<pre>
+## Set up the normal mixture
+theta0 &lt;- c(0,1)
+theta1 &lt;- c(3,2)
+p &lt;- 0.8
+
+## Sample from an independent N(0,3^2) candidate density
+candidate &lt;- c(0, 3)
+MCMCsampleInd &lt;- normMixMH(theta0, theta1, p, candidate)
+
+## If we wish to use the alternative random walk N(0, 0.5^2)
+## candidate density
+candidate &lt;- c(0, 0.5)
+MCMCsampleRW &lt;- normMixMH(theta0, theta1, p, candidate, type = 'rw')
+</pre>
+
+
+
+<hr><div align="center">[Package <em>bolstad2</em> version 1.0-13 <a href="00Index.html">Index</a>]</div>
+
+</body></html>

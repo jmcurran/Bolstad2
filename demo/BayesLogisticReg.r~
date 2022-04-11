@@ -1,0 +1,4 @@
+test.df<-read.csv("logistictest.csv")
+source("bayesLogistic.r")
+bayesLogistic(test.df$y,test.df$x,plots=T)
+

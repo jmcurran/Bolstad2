@@ -1,0 +1,33 @@
+\name{credIntSamp}
+\alias{credIntSamp}
+\title{Calculate a credible interval from a numerically specified
+  posterior CDF}
+\description{
+  Calculates a lower, upper, or two-sided credible interval
+  from the numerical posterior CDF.
+}
+\usage{credIntSamp(theta, conf = 0.95, type="twosided")
+}
+\arguments{
+  \item{theta}{a sample from the posterior density}
+  \item{conf}{the desired 'confidence' level}
+  \item{type}{ the type of interval to return, 'lower' = one sided lower
+    bound, 'two-sided' = two - sided, or 'upper' = one sided upper
+    bound. It is sufficient to use 'l','t' or 'u'}
+}
+\value{
+  a list containing the elements lower.bound, uppper.bound or both
+  depending on type
+}
+\details{
+  This function uses linear interpolation to calculate bounds for points
+  that may not be specified by CDF
+}
+\examples{
+## posterior is N(0,1)
+theta <- rnorm(1000)
+ci<-credIntSamp(theta)
+plot(density(theta))
+abline(v=c(unlist(ci)))
+}
+

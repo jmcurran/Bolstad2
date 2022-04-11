@@ -1,0 +1,134 @@
+<html><head><title>Draw a sample from a posterior distribution of data with an
+unknown mean and variance using Gibbs sampling</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>normGibbs(Bolstad2)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   normGibbs">
+<param name="keyword" value=" Draw a sample from a posterior distribution of data with an
+unknown mean and variance using Gibbs sampling">
+</object>
+
+
+<h2>Draw a sample from a posterior distribution of data with an
+unknown mean and variance using Gibbs sampling</h2>
+
+
+<h3>Description</h3>
+
+<p>
+normGibbs draws a Gibbs sample from the posterior distribution
+of the parameters given the data fron normal distribution with
+unknown mean and variance.  The prior for <i>&mu;</i> given <i>var</i> is
+prior mean <i>m0</i> and prior variance <i>var/n0</i> .  That means
+<i>n0</i> is the 'equivalent sample size.' The prior distribution of
+the variance is <i>s0</i> times an inverse chi-squared with <i>kappa0</i>
+degrees of freedom. The joint prior is the product  <i>g(var)g(mu|var)</i>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+normGibbs(y, steps = 1000, type = 'ind', ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>y</code></td>
+<td>
+A vector containing the data</td></tr>
+<tr valign="top"><td><code>steps</code></td>
+<td>
+The number of iterations of Gibbs sampling to carry out</td></tr>
+<tr valign="top"><td><code>type</code></td>
+<td>
+Either 'ind' for sampling from an independent conjugate prior or
+'joint' for sampling from a joint conjugate prior. 'i' and 'j' can be used
+as compact notation</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+If type = 'ind' then the user can specify the prior for
+<i>&mu;</i> with a parameter priorMu which can either be a single
+number m0, or m0 and n0. if m0 and n0 are not specified then m0 and
+n0 are 0 by default. The user can also specify priorVar, which if
+given, must be a vector with two elements s0 and kappa0. If s0 and
+kappa0 are not given then they are zero by default. If type =
+'joint' then priorMu must be a vector of length two with elements m0
+and sd0.  The user can also specify priorVar, which if given, must
+be a vector with two elements s0 and kappa0. If s0 and kappa0 are
+not given then they are zero by default.</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+A data frame containing three variables
+<table summary="Rd table">
+<tr>
+  <td align="right">[1,] </td>  <td align="left"> mu </td>  <td align="left"> a sample from the posterior distribution of the mean </td>
+</tr>
+<tr>
+  <td align="right"> [2,] </td>  <td align="left"> sig </td>  <td align="left"> a sample from the posterior distribution of the standard deviation </td>
+</tr>
+<tr>
+  <td align="right"> [3,] </td>  <td align="left"> mu </td>  <td align="left"> a sample from the posterior distribution of the variance = sig^2 </td>
+</tr>
+</table>
+</p>
+
+<h3>Author(s)</h3>
+
+<p>
+James M. Curran
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## firstly generate some random data
+mu &lt;- rnorm(1)
+sigma &lt;- rgamma(1,5,1)
+y &lt;- rnorm(100, mu, sigma)
+
+## A \eqn{N(10,3^2)} prior for \eqn{\mu} and a 25 times inverse chi-squared
+## with one degree of freedom prior for \eqn{\sigma^2}
+MCMCSampleInd &lt;- normGibbs(y, steps = 5000, priorMu = c(10,3),
+                           priorVar = c(25,1))
+
+## We can also use a joint conjugate prior for \eqn{\mu} and \eqn{\sigma^2}.
+## This will be a \emph{normal}\eqn{(m,\sigma^2/n_0)} prior for \eqn{\mu} given
+## the variance \eqn{\sigma^2}, and an \eqn{s0} times an \emph{inverse
+## chi-squared} prior for \eqn{\sigma^2}.
+MCMCSampleJoint &lt;- normGibbs(y, steps = 5000, type = 'joint',
+                             priorMu = c(10,3), priorVar = c(25,1))
+
+## Now plot the results
+oldPar &lt;- par(mfrow=c(2,2))
+
+plot(density(MCMCSampleInd$mu),xlab=expression(mu), main =
+"Independent")
+abline(v=mu)
+plot(density(MCMCSampleInd$sig),xlab=expression(sig), main =
+"Independent")
+abline(v=sigma)
+
+plot(density(MCMCSampleJoint$mu),xlab=expression(mu), main =
+"Joint")
+abline(v=mu)
+plot(density(MCMCSampleJoint$sig),xlab=expression(sig), main =
+"Joint")
+abline(v=sigma)
+
+</pre>
+
+
+
+<hr><div align="center">[Package <em>Bolstad2</em> version 1.0-19 <a href="00Index.html">Index</a>]</div>
+
+</body></html>

@@ -1,0 +1,36 @@
+[OPTIONS]
+Auto Index=Yes
+Contents file=Bolstad2.toc
+Compatibility=1.1 or later
+Compiled file=Bolstad2.chm
+Default topic=00Index.html
+Display compile progress=No
+Full-text search=Yes
+Full text search stop list file=..\..\..\gnuwin32\help\R.stp
+Title=R Help for package Bolstad2
+
+
+[FILES]
+00Index.html
+AidsSurvival.df.html
+GelmanRubin.html
+bayesCPH.html
+bayesLogistic.html
+bayesPois.html
+bivnormMH.html
+c10ex16.df.html
+credInt.html
+credIntNum.html
+credIntSamp.html
+describe.html
+hierMeanReg.html
+hiermeanRegTest.df.html
+logisticTest.df.html
+normGibbs.html
+normMixMH.html
+pNull.html
+pnullNum.html
+pnullSamp.html
+poissonTest.df.html
+sintegral.html
+thin.html

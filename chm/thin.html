@@ -1,0 +1,70 @@
+<html><head><title>Thin an MCMC sample</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>thin(bolstad2)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   thin">
+<param name="keyword" value=" Thin an MCMC sample">
+</object>
+
+
+<h2>Thin an MCMC sample</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Thins the output from an MCMC process
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>thin(x, k)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+A vector, matrix or data.frame containing output from an MCMC
+sampling scheme</td></tr>
+<tr valign="top"><td><code>k</code></td>
+<td>
+An integer. This function takes every kth element from
+x</td></tr>
+</table>
+
+<h3>Details</h3>
+
+<p>
+Note this function does not check to see if k is sensible.
+</p>
+
+
+<h3>Value</h3>
+
+<p>
+A thinned vector, matrix or data frame containing every kth
+element of x.</p>
+
+<h3>Examples</h3>
+
+<pre>
+## A blockwise Metropolis-Hastings chain of 1000 elements, thinned to
+## 5th element
+##
+
+MCMCSampleBW &lt;- bivnormMH(0.9, type = 'block')
+MCMCSampleBW &lt;- thin(MCMCSampleBW, 5)
+</pre>
+
+
+
+<hr><div align="center">[Package <em>bolstad2</em> version 1.0-12 <a href="00Index.html">Index</a>]</div>
+
+</body></html>

@@ -1,0 +1,54 @@
+\name{normMixMH}
+\alias{normMixMH}
+\title{Sample from a normal mixture model using Metropolis-Hastings
+}
+\description{normMixMH uses the Metropolis-Hastings algorithm to draw a
+  sample from a univariate target distribution that is a mixture of two
+  normal distributions using an independent normal candidate density or a random
+  walk normal candidate density.
+
+}
+\usage{
+  normMixMH(theta0, theta1, p,  candidate,
+            steps = 1000, type = 'ind',
+            randomSeed = NULL, startValue = NULL)
+}
+\arguments{
+  \item{theta0}{A vector of length two containing the mean and standard
+    deviation of the first component of the normal mixture}
+  \item{theta1}{A vector of length two containing the mean and standard
+    deviation of the second component of the normal mixture}
+  \item{p}{A value between 0 and 1 representing the mixture proportion,
+    so that the true density is \eqn{p\times f(\mu1,\sigma1) +
+      (1-p)\times f(\mu_2,\sigma_2)}}
+  \item{candidate}{A vector of length two containing the mean and
+    standard deviation of the candidate density}
+  \item{steps}{The number of steps to be used in the Metropolis-Hastings
+    algorithm. steps must be greater than 100}
+  \item{type}{Either 'ind' or 'rw' depending on whether a independent
+    candidate density or random walk candidate density is to be
+    used. 'i' and 'r' may be used as alternative compact notation}
+  \item{startValue}{A starting value for the chain}
+  \item{randomSeed}{A seed for the random number generator. Only used
+    when you want the same sequence of random numbers in the chain}
+}
+\value{
+  A vector containing a sample from the normal mixture distribution.
+}
+\examples{
+## Set up the normal mixture
+theta0 <- c(0,1)
+theta1 <- c(3,2)
+p <- 0.8
+
+## Sample from an independent N(0,3^2) candidate density
+candidate <- c(0, 3)
+MCMCsampleInd <- normMixMH(theta0, theta1, p, candidate)
+
+
+## If we wish to use the alternative random walk N(0, 0.5^2)
+## candidate density
+candidate <- c(0, 0.5)
+MCMCsampleRW <- normMixMH(theta0, theta1, p, candidate, type = 'rw')
+}
+

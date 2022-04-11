@@ -1,0 +1,27 @@
+\name{thin}
+\alias{thin}
+\title{Thin an MCMC sample}
+\description{Thins the output from an MCMC process
+}
+\usage{thin(x, k)
+}
+\arguments{
+  \item{x}{A vector, matrix or data.frame containing output from an MCMC
+    sampling scheme}
+  \item{k}{An integer. This function takes every kth element from
+    x}
+}
+\value{ A thinned vector, matrix or data frame containing every kth
+  element of x.
+}
+\details{
+  Note this function does not check to see if k is sensible.
+}
+\examples{
+## A blockwise Metropolis-Hastings chain of 1000 elements, thinned to
+## 5th element
+##
+
+MCMCSampleBW <- bivnormMH(0.9, type = 'block')
+MCMCSampleBW <- thin(MCMCSampleBW, 5)
+}

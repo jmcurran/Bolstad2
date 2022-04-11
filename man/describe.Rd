@@ -1,0 +1,30 @@
+\name{describe}
+\alias{describe}
+\title{Give simple descriptive statistics for a matrix or a data frame}
+\description{This function is designed to emulate the Minitab function
+  DESCRIBE. It gives simple descriptive statistics for a data frame
+}
+\usage{describe(x, varNames = NULL)
+}
+\arguments{
+  \item{x}{A matrix or data.frame with numeric entries. Different
+    variables are represented by columns.}
+  \item{varNames}{A vector of variable names for each of the columns}
+}
+\value{
+  A data.frame containing the following elements:
+  \item{N}{The number of observations for each variable}
+  \item{mean}{The sample mean for each variable}
+  \item{stdev}{The sample standard deviation}
+  \item{sterr}{The standard error of the mean}
+  \item{min}{The minimum}
+  \item{q1}{The lower quartile}
+  \item{med}{The median}
+  \item{q3}{The upper quartile}
+  \item{max}{The maximum}
+}
+\examples{
+data(poissonTest.df)
+describe(poissonTest.df)
+}
+

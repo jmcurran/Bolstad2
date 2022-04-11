@@ -1,0 +1,107 @@
+<html><head><title>Bayesian Pois Regression</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="Rchm.css">
+</head>
+<body>
+
+<table width="100%"><tr><td>BayesPois(Bolstad2)</td><td align="right">R Documentation</td></tr></table><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+<param name="keyword" value="R:   BayesPois">
+<param name="keyword" value=" Bayesian Pois Regression">
+</object>
+
+
+<h2>Bayesian Pois Regression</h2>
+
+
+<h3>Description</h3>
+
+<p>
+Performs Metropolis Hastings on the logistic regression model to draw
+sample from posterior. Uses a matched curvature Student's t candidate
+generating distribution with 4 degrees of freedom to give heavy
+tails.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>BayesPois(y, x, steps = 1000,
+                 priorMean = NULL, priorVar = NULL,
+                 mleMean = NULL, mleVar,
+                 startValue = NULL, randomSeed = NULL,
+                 plots = FALSE)
+
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>y</code></td>
+<td>
+the binary response vector</td></tr>
+<tr valign="top"><td><code>x</code></td>
+<td>
+matrix of covariates</td></tr>
+<tr valign="top"><td><code>steps</code></td>
+<td>
+the number of steps to use in the Metropolis-Hastings
+updating</td></tr>
+<tr valign="top"><td><code>priorMean</code></td>
+<td>
+the mean of the prior</td></tr>
+<tr valign="top"><td><code>priorVar</code></td>
+<td>
+the variance of the prior</td></tr>
+<tr valign="top"><td><code>mleMean</code></td>
+<td>
+the mean of the matched curvature likelihood</td></tr>
+<tr valign="top"><td><code>mleVar</code></td>
+<td>
+the covariance matrix of the matched curvature
+likelihood</td></tr>
+<tr valign="top"><td><code>startValue</code></td>
+<td>
+</td></tr>
+<tr valign="top"><td><code>randomSeed</code></td>
+<td>
+a random seed to use for different chains</td></tr>
+<tr valign="top"><td><code>plots</code></td>
+<td>
+Plot the time series and auto correlation functions for
+each of the model coefficients</td></tr>
+</table>
+
+<h3>Value</h3>
+
+<p>
+A list containing the following components:
+</p>
+<table summary="R argblock">
+<tr valign="top"><td><code>beta</code></td>
+<td>
+a data frame containing the sample of the model
+coefficients from the posterior distribution</td></tr>
+<tr valign="top"><td><code>mleMean</code></td>
+<td>
+the mean of the matched curvature likelihood. This is
+useful if you've used a training set to estimate the value and wish
+to use it with another data set</td></tr>
+<tr valign="top"><td><code>mleVar</code></td>
+<td>
+the covariance matrix of the matched curvature
+likelihood. See mleMean for why you'd want this</td></tr>
+</table>
+
+<h3>Examples</h3>
+
+<pre>
+data(poissonTest.df)
+results &lt;- BayesPois(poissonTest.df$y, poissonTest.df$x)
+</pre>
+
+
+
+<hr><div align="center">[Package <em>Bolstad2</em> version 1.0-14 <a href="00Index.html">Index</a>]</div>
+
+</body></html>
