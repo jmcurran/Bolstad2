@@ -1,5 +1,0 @@
-bayesCPH		Bayesian Cox Proportional Hazard model
-bayesLogisticReg	Bayesian Logistic Regression
-bayesPoissonReg	Bayesian Poisson Regression
-hiermeanReg		Hierarchical Modelling
-normGibbs		Gibbs sampling from a normal distribution

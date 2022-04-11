@@ -1,5 +1,0 @@
-test.df<-read.csv("poissontest.csv")
-source("bayesPois.r")
-#debug(bayesPois)
-bayesPois(test.df$y,test.df$x,plots=T)
-

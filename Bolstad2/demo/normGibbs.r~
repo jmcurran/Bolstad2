@@ -1,4 +1,0 @@
-source("normGibbs.r")
-y<-scan("Example15.csv")
-#debug(normGibbs)
-normGibbs(y, muPrior = c(20, 10), varPrior = c(11.37, 1))
