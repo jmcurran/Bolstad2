@@ -1,3 +1,36 @@
+#' Bayesian Logistic Regression
+#' 
+#' Performas Metropolis Hastings on the logistic regression model to draw
+#' sample from posterior. Uses a matched curvature Student's t candidate
+#' generating distribution with 4 degrees of freedom to give heavy tails.
+#' 
+#' 
+#' @param y the binary response vector
+#' @param x matrix of covariates
+#' @param steps the number of steps to use in the Metropolis-Hastings updating
+#' @param priorMean the mean of the prior
+#' @param priorVar the variance of the prior
+#' @param mleMean the mean of the matched curvature likelihood
+#' @param mleVar the covariance matrix of the matched curvature likelihood
+#' @param startValue a vector of starting values for all of the regression
+#' coefficients including the intercept
+#' @param randomSeed a random seed to use for different chains
+#' @param plots Plot the time series and auto correlation functions for each of
+#' the model coefficients
+#' @return A list containing the following components:
+#' 
+#' \item{beta}{a data frame containing the sample of the model coefficients
+#' from the posterior distribution} \item{mleMean}{the mean of the matched
+#' curvature likelihood. This is useful if you've used a training set to
+#' estimate the value and wish to use it with another data set}
+#' \item{mleVar}{the covariance matrix of the matched curvature likelihood. See
+#' mleMean for why you'd want this}
+#' @examples
+#' 
+#' data(logisticTest.df)
+#' BayesLogistic(logisticTest.df$y, logisticTest.df$x)
+#' 
+#' @export BayesLogistic
 BayesLogistic = function(y, x, steps = 1000,
                         priorMean = NULL, priorVar = NULL,
                         mleMean = NULL, mleVar,

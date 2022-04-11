@@ -17,3 +17,4 @@ PackageUseDevtools: Yes
 PackagePath: Bolstad2
 PackageInstallArgs: --no-multiarch --with-keep.source
 PackageCheckArgs: --as-cran
+PackageRoxygenize: rd,collate,namespace,vignette

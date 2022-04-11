@@ -1,3 +1,27 @@
+#' Calculate a credible interval from a numerically specified posterior CDF
+#' 
+#' Calculates a lower, upper, or two-sided credible interval from the numerical
+#' posterior CDF.
+#' 
+#' This function uses linear interpolation to calculate bounds for points that
+#' may not be specified by CDF
+#' 
+#' @param theta a sample from the posterior density
+#' @param conf the desired 'confidence' level
+#' @param type the type of interval to return, 'lower' = one sided lower bound,
+#' 'two-sided' = two - sided, or 'upper' = one sided upper bound. It is
+#' sufficient to use 'l','t' or 'u'
+#' @return a list containing the elements lower.bound, uppper.bound or both
+#' depending on type
+#' @examples
+#' 
+#' ## posterior is N(0,1)
+#' theta <- rnorm(1000)
+#' ci<-credIntSamp(theta)
+#' plot(density(theta))
+#' abline(v=c(unlist(ci)))
+#' 
+#' @export credIntSamp
 credIntSamp<-function(theta, conf = 0.95, type = 'twosided'){
 
     if(length(theta)<10)

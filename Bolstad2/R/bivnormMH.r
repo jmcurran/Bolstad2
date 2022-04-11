@@ -1,3 +1,47 @@
+#' Metropolis Hastings sampling from a Bivariate Normal distribution
+#' 
+#' This function uses the MetropolisHastings algorithm to draw a sample from a
+#' correlated bivariate normal target density using a random walk candidate and
+#' an independent candidate density respectively where we are drawing both
+#' parameters in a single draw. It can also use the blockwise Metropolis
+#' Hastings algorithm and Gibbs sampling respectively to draw a sample from the
+#' correlated bivariate normal target.
+#' 
+#' 
+#' @param rho the correlation coefficient for the bivariate normal
+#' @param rho1 the correlation of the candidate distribution. Only used when
+#' type = 'ind'
+#' @param sigma the standard deviations of the marginal distributions of the
+#' independent candidate density. Only used when type = 'ind'
+#' @param steps the number of Metropolis Hastings steps
+#' @param type the type of candidate generation to use. Can be one of 'rw' =
+#' random walk, 'ind' = independent normals, 'gibbs' = Gibbs sampling or
+#' 'block' = blockwise. It is sufficient to use 'r','i','g', or 'b'
+#' @return returns a list which contains a data frame called targetSample with
+#' members x and y. These are the samples from the target density.
+#' @examples
+#' 
+#' ## independent chain
+#' chain1.df<-bivnormMH(0.9)$targetSample
+#' 
+#' ## random walk chain
+#' chain2.df<-bivnormMH(0.9, type = 'r')$targetSample
+#' 
+#' 
+#' ## blockwise MH chain
+#' chain3.df<-bivnormMH(0.9, type = 'b')$targetSample
+#' 
+#' ## Gibbs sampling chain
+#' chain4.df<-bivnormMH(0.9, type = 'g')$targetSample
+#' 
+#' oldPar <- par(mfrow=c(2,2))
+#' plot(y ~ x, type = 'l', chain1.df, main = 'Independent')
+#' plot(y ~ x, type = 'l', chain2.df, main = 'Random Walk')
+#' plot(y ~ x, type = 'l', chain3.df, main = 'Blockwise')
+#' plot(y ~ x, type = 'l', chain4.df, main = 'Gibbs')
+#' par(oldPar)
+#' 
+#' @export bivnormMH
 bivnormMH<-function(rho, rho1 = 0.9, sigma = c(1.2, 1.2), steps = 1000, type = 'ind'){
 
     if(rho < -1 | rho > 1){
