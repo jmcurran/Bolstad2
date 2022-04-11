@@ -66,17 +66,17 @@ MCMCSampleJoint <- normGibbs(y, steps = 5000, type = 'joint',
 oldPar <- par(mfrow=c(2,2))
 
 plot(density(MCMCSampleInd$mu),xlab=expression(mu), main =
-"Independent")
+'Independent')
 abline(v=mu)
 plot(density(MCMCSampleInd$sig),xlab=expression(sig), main =
-"Independent")
+'Independent')
 abline(v=sigma)
 
 plot(density(MCMCSampleJoint$mu),xlab=expression(mu), main =
-"Joint")
+'Joint')
 abline(v=mu)
 plot(density(MCMCSampleJoint$sig),xlab=expression(sig), main =
-"Joint")
+'Joint')
 abline(v=sigma)
 
 

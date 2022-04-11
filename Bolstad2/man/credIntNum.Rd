@@ -44,9 +44,9 @@ posterior <- ppnPost/scaleFactor
 cdf <- sintegral(theta, posterior)$y
 ci<-credIntNum(theta, cdf)
 par(mfrow=c(2,2))
-plot(prior ~ theta, type = 'l',  main = "Prior N(6, 9)")
-plot(ppnLike ~ theta, type = 'l', main = "Proportional likelihood")
-plot(posterior ~ theta, type = 'l', main = "Posterior")
+plot(prior ~ theta, type = 'l',  main = 'Prior N(6, 9)')
+plot(ppnLike ~ theta, type = 'l', main = 'Proportional likelihood')
+plot(posterior ~ theta, type = 'l', main = 'Posterior')
 abline(v=c(unlist(ci)))
 
 }
